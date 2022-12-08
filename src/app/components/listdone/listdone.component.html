@@ -1,0 +1,20 @@
+<div class="text-center">
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <tr *ngFor="let currentElementOfList of listdone; index as indexOfElement">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+          </div>
+          <input type="text" class="form-control" aria-label="Text input with checkbox"
+                 aria-describedby="basic-addon2"
+                 value="{{currentElementOfList}}">
+          <button (click)="active(currentElementOfList, indexOfElement)" [disabled]="counteractive"
+                  class="btn btn-danger">
+            Not done
+          </button>
+        </div>
+      </tr>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,53 @@
+import { Component, OnInit } from '@angular/core';
+import {findTask} from "../../httpclient-task";
+
+@Component({
+  selector: 'app-list',
+  templateUrl: './list.component.html',
+  styleUrls: ['./list.component.css']
+})
+export class ListComponent implements OnInit {
+  title = 'todoapp';
+  counterac: number = 0;
+  counterdn: number = 0;
+  listactive: string[] = [];
+  listdone: string[] = [];
+  counteractive: boolean = false;
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+  add(){
+    findTask();
+    //content von liste ist title + this.counter
+    if (this.listactive[this.counterac] !== null || '' ) {
+      this.listactive[this.counterac] = "task " + (this.counterac + 1);
+    }
+    this.counterac += 1;
+    console.log(this.counterac)
+    console.log(this.listactive)
+    if (this.counterac === 0){
+      this.counteractive = true;
+    } else {
+      this.counteractive = false;
+    }
+  }
+
+  delete(currentElementOfList: any, index: any){
+    this.counterac -= 1;
+    console.log(this.listactive)
+    this.listactive[this.counterac]
+    this.listactive.splice(index, 1);
+    console.log(this.listactive)
+  }
+
+  done(currentElementOfList: any, index: any){
+    console.log("Change");
+    this.listdone[this.counterdn] = currentElementOfList;
+    this.listactive.splice(index, 1);
+    this.counterdn ++;
+    this.counterac --;
+  }
+
+}

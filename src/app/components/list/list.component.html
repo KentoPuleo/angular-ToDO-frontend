@@ -1,0 +1,24 @@
+<div class="text-center">
+  <button (click)="add()" class="btn btn-primary">ADD</button>
+  <p>{{counterac}}</p>
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <tr *ngFor="let currentElementOfList of listactive; index as indexOfElement">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <input type="checkbox" aria-label="Checkbox for following text input" (change)="done(currentElementOfList, indexOfElement)">
+            </div>
+          </div>
+          <input type="text" class="form-control" aria-label="Text input with checkbox"
+                 aria-describedby="basic-addon2"
+                 value="{{currentElementOfList}}">
+          <button (click)="delete(currentElementOfList, indexOfElement)" [disabled]="counteractive"
+                  class="btn btn-danger">
+            delete
+          </button>
+        </div>
+      </tr>
+    </div>
+  </div>
+</div>

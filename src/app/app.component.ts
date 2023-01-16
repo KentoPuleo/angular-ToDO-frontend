@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import {getAllUser} from "./httprequest-user";
 
 
 
@@ -9,41 +10,30 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class AppComponent {
   @Input() point!: string;
-  title = 'todoapp';
-  counterac: number = 0;
-  counterdn: number = 0;
-  listactive: string[] = [];
-  listdone: string[] = [];
-  counteractive: boolean = false;
 
-  add(){
-    //content von liste ist title + this.counter
-    if (this.listactive[this.counterac] !== null || '' ) {
-      this.listactive[this.counterac] = "task " + (this.counterac + 1);
-    }
-    this.counterac += 1;
-    console.log(this.counterac)
-    console.log(this.listactive)
-    if (this.counterac === 0){
-      this.counteractive = true;
-    } else {
-      this.counteractive = false;
+  login: boolean = false;
+
+  ngOnInit(): void {
+    const navList = document.querySelector("#nav-list") as HTMLBodyElement
+    const navLogin = document.querySelector("#nav-login") as HTMLBodyElement
+    const navDone = document.querySelector("#nav-done") as HTMLBodyElement
+    const navTest = document.querySelector("#nav-test") as HTMLBodyElement
+
+    let login = sessionStorage.getItem("login");
+    if (login === "true"){
+      this.login = true;
+      console.log("Am I logged in? ", this.login);
+      navList.style.display = "block"
+      navDone.style.display = "block"
+      navTest.style.display = "block"
+      console.log("display none")
+      navLogin.style.display = "none"
+
     }
   }
 
-  delete(currentElementOfList: any, index: any){
-    this.counterac -= 1;
-    console.log(this.listactive)
-    this.listactive[this.counterac]
-    this.listactive.splice(index, 1);
-    console.log(this.listactive)
-  }
-
-  done(currentElementOfList: any, index: any){
-    console.log("Change");
-    this.listdone[this.counterdn] = currentElementOfList;
-    this.listactive.splice(index, 1);
-    this.counterdn ++;
-    this.counterac --;
+  logout(){
+    sessionStorage.setItem("login", "false")
   }
 }
+

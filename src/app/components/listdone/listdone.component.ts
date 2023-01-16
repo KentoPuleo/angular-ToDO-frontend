@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {getAllTask, removeTask} from "../../httpclient-task";
+import {ListModel} from "../../model/list.model";
 
 @Component({
   selector: 'app-listdone',
@@ -6,24 +8,31 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./listdone.component.css']
 })
 export class ListdoneComponent implements OnInit {
-  title = 'todoapp';
-  counterac: number = 0;
-  counterdn: number = 0;
-  listactive: string[] = [];
-  listdone: string[] = [];
-  counteractive: boolean = false;
+  list: ListModel[] = [];
+  listdone: ListModel[] = [];
 
   constructor() { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    this.list = await getAllTask();
+    this.list.forEach(task => {
+      if (task.status == false){
+        this.listdone.push(task);
+      }
+    })
+    if (this.listdone.length === 0){
+      console.log("no task done");
+      const showmessage = document.querySelector(".show-message") as HTMLBodyElement
+      showmessage.style.display = "block";
+    }
   }
 
-  active(currentElementOfList: any, index: any){
-    console.log("Change");
-    this.listactive[this.counterac] = currentElementOfList;
-    this.listdone.splice(index, 1);
-    this.counterdn --;
-    this.counterac ++;
+  delete(param: string){
+    removeTask(parseInt(param));
+  }
+
+  done(){
+
   }
 
 }

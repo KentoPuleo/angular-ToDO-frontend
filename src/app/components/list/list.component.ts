@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {findTask} from "../../httpclient-task";
+import {addTask, getOneTask, getAllTask, removeTask, list, updateTask} from "../../httpclient-task";
+import {ListModel} from "../../model/list.model";
+
 
 @Component({
   selector: 'app-list',
@@ -7,47 +9,32 @@ import {findTask} from "../../httpclient-task";
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  title = 'todoapp';
-  counterac: number = 0;
-  counterdn: number = 0;
-  listactive: string[] = [];
-  listdone: string[] = [];
-  counteractive: boolean = false;
+  list: ListModel[] = [];
+  listactive: ListModel[] = [];
+
   constructor() { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    this.list = await getAllTask();
+    this.list.forEach(task => {
+      if (task.status == true){
+        this.listactive.push(task);
+      }
+    });
   }
 
   add(){
-    findTask();
-    //content von liste ist title + this.counter
-    if (this.listactive[this.counterac] !== null || '' ) {
-      this.listactive[this.counterac] = "task " + (this.counterac + 1);
-    }
-    this.counterac += 1;
-    console.log(this.counterac)
-    console.log(this.listactive)
-    if (this.counterac === 0){
-      this.counteractive = true;
-    } else {
-      this.counteractive = false;
-    }
+    let param = document.getElementById('taskname') as HTMLInputElement;
+    addTask(param?.value);
   }
 
-  delete(currentElementOfList: any, index: any){
-    this.counterac -= 1;
-    console.log(this.listactive)
-    this.listactive[this.counterac]
-    this.listactive.splice(index, 1);
-    console.log(this.listactive)
+
+  delete(param: string){
+    removeTask(parseInt(param));
   }
 
-  done(currentElementOfList: any, index: any){
-    console.log("Change");
-    this.listdone[this.counterdn] = currentElementOfList;
-    this.listactive.splice(index, 1);
-    this.counterdn ++;
-    this.counterac --;
+  done(param: string){
+    updateTask(parseInt(param));
   }
 
 }

@@ -1,20 +1,22 @@
 <div class="text-center">
-  <button (click)="add()" class="btn btn-primary">ADD</button>
-  <p>{{counterac}}</p>
+  <input id="taskname" style="margin-bottom: 10px" type="text" class="form-control" aria-label="Text input with checkbox"
+         aria-describedby="basic-addon2"
+         value="Taskname and Description">
+  <button (click)="add()" class="btn btn-primary" style="margin-bottom: 15px" onClick="history.go(0)">ADD</button>
   <div class="row justify-content-center">
     <div class="col-auto">
       <tr *ngFor="let currentElementOfList of listactive; index as indexOfElement">
         <div class="input-group mb-3">
           <div class="input-group-prepend">
             <div class="input-group-text">
-              <input type="checkbox" aria-label="Checkbox for following text input" (change)="done(currentElementOfList, indexOfElement)">
+              <input  type="checkbox" aria-label="Checkbox for following text input" (change)="done(currentElementOfList.id)" onClick="history.go(0)">
             </div>
           </div>
-          <input type="text" class="form-control" aria-label="Text input with checkbox"
+          <input  type="text" class="form-control" aria-label="Text input with checkbox"
                  aria-describedby="basic-addon2"
-                 value="{{currentElementOfList}}">
-          <button (click)="delete(currentElementOfList, indexOfElement)" [disabled]="counteractive"
-                  class="btn btn-danger">
+                 value="{{currentElementOfList.name}}">
+          <button (click)="delete(currentElementOfList.id)"
+                  class="btn btn-danger" onClick="history.go(0)"  >
             delete
           </button>
         </div>

@@ -1,0 +1,17 @@
+<div class="text-center">
+  <label for="name" style="margin-top: 50px">Name:</label><br>
+  <input type="text" id="name" name="name" required><br>
+  <div style="margin-top: 10px">
+    <label for="email">E-Mail:</label><br>
+    <input type="email" id="email" required><br>
+  </div>
+  <div style="margin-top: 10px">
+    <label for="name">Password:</label><br>
+    <input type="password" id="pass" name="password" required><br>
+    <button (click)="check()" class="btn btn-primary" style="margin-top: 15px">Sign in</button><br>
+  </div>
+  <div style="margin-top: 10px">
+    <p>Bereits ein Konto? <a class="active"  routerLink="/signin">Login</a></p>
+  </div>
+</div>
+

@@ -32,8 +32,7 @@ import { TestComponent } from './components/test/test.component';
       { path: 'login', component: LoginComponent},
       { path: 'signin', component: SigninComponent},
       { path: 'home', component: HomeComponent},
-      { path: 'test', component: TestComponent}
-
+      { path: 'test', component: TestComponent},
     ])
   ],
   providers: [],

@@ -33,7 +33,7 @@ nav {
   margin-bottom: 10px;
 }
 
-#nav-list, #nav-done, #nav-test {
+#nav-test {
   display: none;
 }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {addTask, getOneTask, getAllTask, removeTask, list, updateTask} from "../../httpclient-task";
-import {ListModel} from "../../model/list.model";
+import {addTask, getOneTask, getAllTask, removeTask, list, updateTask} from "../../../httpclient-task";
+import {ListModel} from "../../../model/list.model";
 
 
 @Component({

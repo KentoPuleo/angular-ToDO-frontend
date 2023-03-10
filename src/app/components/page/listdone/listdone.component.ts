@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {getAllTask, removeTask} from "../../httpclient-task";
-import {ListModel} from "../../model/list.model";
+import {getAllTask, removeTask} from "../../../httpclient-task";
+import {ListModel} from "../../../model/list.model";
 
 @Component({
   selector: 'app-listdone',

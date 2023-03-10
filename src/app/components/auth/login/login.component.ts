@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {addTask, getAllTask} from "../../httpclient-task";
-import {addUser, getAllUser} from "../../httprequest-user";
-import { UserModul} from "../../model/user.modul";
+import {addTask, getAllTask} from "../../../httpclient-task";
+import {addUser, getAllUser} from "../../../httprequest-user";
+import { UserModul} from "../../../model/user.modul";
 
 
 @Component({

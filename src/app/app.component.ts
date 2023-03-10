@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {getAllUser} from "./httprequest-user";
-
+import {select, Store} from '@ngrx/store';
 
 
 @Component({

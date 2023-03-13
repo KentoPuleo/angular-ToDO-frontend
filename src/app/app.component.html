@@ -1,12 +1,12 @@
 <nav>
   <ul>
     <li><a id="nav-home" routerLink="/home">Home</a></li>
-    <li><a id="nav-login" routerLink="/login">Sign in</a></li>
+    <li><a id="nav-login" routerLink="/login" *ngIf="isLoggedOut$ | async">Sign in</a></li>
     <li><a id="nav-list" routerLink="/list">List</a></li>
     <li><a id="nav-done" routerLink="/listdone">Done</a></li>
     <li><a id="nav-test" routerLink="/test">Test</a></li>
     <li class="right">
-      <button (click)="logout()" routerLink="/login">Log out</button>
+      <button (click)="logout()" routerLink="/login" *ngIf="isLoggedIn$ | async">Log out</button>
     </li>
   </ul>
 </nav>

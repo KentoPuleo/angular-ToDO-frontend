@@ -1,6 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {getAllUser} from "../../../httprequest-user";
 import {UserModul} from "../../../model/user.modul";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AuthService} from "../auth.service";
+import {Router} from "@angular/router";
+import {Store} from "@ngrx/store";
+import {AuthState} from "../reducer";
+import {noop, tap} from "rxjs";
+import { login } from '../auth.action';
 
 @Component({
   selector: 'app-signin',
@@ -11,7 +18,17 @@ export class SigninComponent implements OnInit {
 
   user: UserModul[] = [];
 
-  constructor() {
+  form: FormGroup;
+
+  constructor(
+    private fb: FormBuilder,
+    private auth: AuthService,
+    private router: Router,
+    private store: Store<AuthState>) {
+    this.form = fb.group({
+      name: ['test@angular-university.io', [Validators.required]],
+      password: ['test', [Validators.required]]
+    });
   }
 
   async ngOnInit(): Promise<void> {
@@ -19,6 +36,24 @@ export class SigninComponent implements OnInit {
   }
 
   login() {
+
+    const val = this.form.value;
+
+    this.auth.login(val.name, val.password)
+      .pipe(
+        tap(user => {
+          console.log(user);
+
+          this.store.dispatch(login({user}));
+
+          this.router.navigateByUrl('/courses');
+
+        })
+      )
+      .subscribe(
+        () => alert('Login Failed')
+      )
+
 
 
     /*

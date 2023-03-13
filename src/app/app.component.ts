@@ -1,6 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {getAllUser} from "./httprequest-user";
 import {select, Store} from '@ngrx/store';
+import {map, Observable} from "rxjs";
+import {Router} from "@angular/router";
+import {AuthState} from "./components/auth/reducer";
+import {isLoggedIn, isLoggedOut} from "./components/auth/auth.selectors";
+import {AppState} from "./reducers";
 
 
 @Component({
@@ -8,10 +13,14 @@ import {select, Store} from '@ngrx/store';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   @Input() point!: string;
 
-  login: boolean = false;
+  isLoggedIn$: Observable<boolean> | undefined;
+
+  isLoggedOut$: Observable<boolean> | undefined;
+
+  constructor(private router: Router, private store: Store<AppState>) {  }
 
   ngOnInit(): void {
     const navList = document.querySelector("#nav-list") as HTMLBodyElement
@@ -19,6 +28,18 @@ export class AppComponent {
     const navDone = document.querySelector("#nav-done") as HTMLBodyElement
     const navTest = document.querySelector("#nav-test") as HTMLBodyElement
 
+    this.isLoggedIn$ = this.store
+      .pipe(
+        select(isLoggedIn)
+      );
+
+    this.isLoggedOut$ = this.store
+      .pipe(
+        select(isLoggedOut)
+      );
+
+
+/*
     let login = sessionStorage.getItem("login");
     if (login === "true"){
       this.login = true;
@@ -30,6 +51,7 @@ export class AppComponent {
       navLogin.style.display = "none"
 
     }
+ */
   }
 
   logout(){

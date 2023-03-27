@@ -6,6 +6,7 @@ import {Router} from "@angular/router";
 import {AuthState} from "./components/auth/reducer";
 import {isLoggedIn, isLoggedOut} from "./components/auth/auth.selectors";
 import {AppState} from "./reducers";
+import {login, logout } from './components/auth/auth.action';
 
 
 @Component({
@@ -23,10 +24,18 @@ export class AppComponent implements OnInit{
   constructor(private router: Router, private store: Store<AppState>) {  }
 
   ngOnInit(): void {
+    /*
     const navList = document.querySelector("#nav-list") as HTMLBodyElement
     const navLogin = document.querySelector("#nav-login") as HTMLBodyElement
     const navDone = document.querySelector("#nav-done") as HTMLBodyElement
     const navTest = document.querySelector("#nav-test") as HTMLBodyElement
+    */
+
+    const userProfile = localStorage.getItem("user");
+
+    if (userProfile) {
+      this.store.dispatch(login({user: JSON.parse(userProfile)}));
+    }
 
     this.isLoggedIn$ = this.store
       .pipe(
@@ -55,7 +64,7 @@ export class AppComponent implements OnInit{
   }
 
   logout(){
-    sessionStorage.setItem("login", "false")
+    this.store.dispatch(logout());
   }
 }
 

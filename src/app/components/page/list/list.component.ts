@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {addTask, getOneTask, getAllTask, removeTask, list, updateTask} from "../../../httpclient-task";
 import {ListModel} from "../../../model/list.model";
+import {MainStoreService} from "../main.store.service";
 
 
 @Component({
@@ -12,8 +13,9 @@ export class ListComponent implements OnInit {
   list: ListModel[] = [];
   listactive: ListModel[] = [];
 
-  constructor() { }
+  constructor(private mainStoreService: MainStoreService ) { }
 
+  /*
   async ngOnInit(): Promise<void> {
     this.list = await getAllTask();
     this.list.forEach(task => {
@@ -22,6 +24,13 @@ export class ListComponent implements OnInit {
       }
     });
   }
+   */
+
+  ngOnInit() {
+    this.mainStoreService.selectAllTasks().subscribe(value => this.list= value)
+    this.mainStoreService.getTasks()
+  }
+
 
   add(){
     let param = document.getElementById('taskname') as HTMLInputElement;

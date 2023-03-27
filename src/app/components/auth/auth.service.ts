@@ -12,7 +12,7 @@ export class AuthService {
   }
 
   login(email:string, password:string): Observable<UserModul> {
-    return this.http.post<UserModul>('/api/login', {email,password});
+    return this.http.post<UserModul>('http://localhost:3000/login', {email,password});
   }
 
 }

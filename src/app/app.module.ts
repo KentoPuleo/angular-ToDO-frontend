@@ -7,7 +7,6 @@ import { ListdoneComponent } from './components/page/listdone/listdone.component
 import { ListComponent } from './components/page/list/list.component';
 import { HttpClientModule } from "@angular/common/http";
 import { LoginComponent } from './components/auth/login/login.component';
-import { SigninComponent } from './components/auth/signin/signin.component';
 import { HomeComponent } from './components/page/home/home.component';
 import { TestComponent } from './components/test/test.component';
 import { StoreModule } from '@ngrx/store';
@@ -23,6 +22,7 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatListModule} from "@angular/material/list";
 import {MatToolbarModule} from "@angular/material/toolbar";
+import {MainModule} from "./components/page/main.module";
 
 
 @NgModule({
@@ -31,7 +31,6 @@ import {MatToolbarModule} from "@angular/material/toolbar";
     ListdoneComponent,
     ListComponent,
     LoginComponent,
-    SigninComponent,
     HomeComponent,
     TestComponent
   ],
@@ -43,7 +42,6 @@ import {MatToolbarModule} from "@angular/material/toolbar";
       { path: 'listdone', component: ListdoneComponent},
       { path: 'list', component: ListComponent},
       { path: 'login', component: LoginComponent},
-      { path: 'signin', component: SigninComponent},
       { path: 'home', component: HomeComponent},
       { path: 'test', component: TestComponent},
     ]),
@@ -53,9 +51,10 @@ import {MatToolbarModule} from "@angular/material/toolbar";
     MatProgressSpinnerModule,
     MatListModule,
     MatToolbarModule,
+    MainModule,
     AuthModule.forRoot(),
     StoreModule.forRoot({}, {}),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    StoreDevtoolsModule.instrument({ }),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot()
   ],

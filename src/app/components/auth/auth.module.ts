@@ -1,6 +1,5 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {LoginComponent} from './login/login.component';
 import {MatCardModule} from "@angular/material/card";
 import { MatInputModule } from "@angular/material/input";
 import {RouterModule} from "@angular/router";
@@ -12,6 +11,7 @@ import * as fromAuth from './reducer';
 import {AuthGuard} from "./auth.guard";
 import {EffectsModule} from "@ngrx/effects";
 import {AuthEffects} from "./auth.effects";
+import {SigninComponent} from "./signin/signin.component";
 
 @NgModule({
   imports: [
@@ -20,13 +20,13 @@ import {AuthEffects} from "./auth.effects";
     MatCardModule,
     MatInputModule,
     MatButtonModule,
-    RouterModule.forChild([{path: '', component: LoginComponent}]),
+    RouterModule.forChild([{path: '', component: SigninComponent}]),
     StoreModule.forFeature(fromAuth.authFeatureKey, fromAuth.authReducer, { metaReducers: fromAuth.metaReducers }),
     EffectsModule.forRoot([AuthEffects])
 
   ],
-  declarations: [LoginComponent],
-  exports: [LoginComponent]
+  declarations: [SigninComponent],
+  exports: [SigninComponent]
 })
 
 export class AuthModule {

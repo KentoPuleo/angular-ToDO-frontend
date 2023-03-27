@@ -26,8 +26,8 @@ export class SigninComponent implements OnInit {
     private router: Router,
     private store: Store<AuthState>) {
     this.form = fb.group({
-      name: ['test@angular-university.io', [Validators.required]],
-      password: ['test', [Validators.required]]
+      name: ['Kento', [Validators.required]],
+      password: ['123456789', [Validators.required]]
     });
   }
 
@@ -36,6 +36,8 @@ export class SigninComponent implements OnInit {
   }
 
   login() {
+
+    /*
 
     const val = this.form.value;
 
@@ -46,7 +48,7 @@ export class SigninComponent implements OnInit {
 
           this.store.dispatch(login({user}));
 
-          this.router.navigateByUrl('/courses');
+          //this.router.navigateByUrl('/list');
 
         })
       )
@@ -54,9 +56,11 @@ export class SigninComponent implements OnInit {
         () => alert('Login Failed')
       )
 
+     */
 
 
-    /*
+
+
     let name = document.getElementById('name') as HTMLInputElement;
     let passwort = document.getElementById('pass') as HTMLInputElement;
     for (let i = 0; i < this.user.length; i++) {
@@ -65,9 +69,12 @@ export class SigninComponent implements OnInit {
         console.log(this.user[i].password)
         alert("Username angemeldet")
         sessionStorage.setItem("login", "true")
+        this.router.navigateByUrl('/list');
         break;
         location.reload();
+      } else {
+        console.log("Login failed, user not found")
       }
-    }*/
+    }
   }
 }

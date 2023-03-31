@@ -1,11 +1,19 @@
 import {MainState} from "./main.state";
 import {createReducer, on} from "@ngrx/store";
-import {getAllTasks, getAllTasksFailed, getAllTasksSuccess} from "./main.action";
+import {
+  addTask,
+  addTaskFailed,
+  addTaskSuccess,
+  getAllTasks,
+  getAllTasksFailed,
+  getAllTasksSuccess, removeTask, removeTaskFailed, removeTaskSuccess
+} from "./main.action";
 import {state} from "@angular/animations";
 
 export const initialState = {
   tasks: [],
-  isLoading: false
+  isLoading: false,
+  taskName: ""
 } as MainState
 
 const _mainReducer = createReducer(
@@ -22,7 +30,33 @@ const _mainReducer = createReducer(
   on(getAllTasksFailed, (state) => ({
     ...state,
     isLoading: false
-  }))
+  })),
+
+  on(addTask, (state) =>({
+    ...state,
+    isLoading: true
+  })),
+  on(addTaskSuccess, (state) =>({
+    ...state,
+    isLoading: false
+  })),
+  on(addTaskFailed, (state) =>({
+    ...state,
+    isLoading: false
+  })),
+
+  on(removeTask, (state) => ({
+    ...state,
+    isLoading: true
+  })),
+  on(removeTaskSuccess, (state) => ({
+    ...state,
+    isLoading: false
+  })),
+  on(removeTaskFailed, (state) => ({
+    ...state,
+    isLoading: false
+  })),
 )
 
 export function mainReducer(state: any, action: any) {

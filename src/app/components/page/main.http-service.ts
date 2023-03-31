@@ -6,11 +6,27 @@ import {ListModel} from "../../model/list.model";
 @Injectable({
   providedIn: 'root'
 })
-
 export class MainHttpService {
-  constructor(private httpClient: HttpClient) {}
+
+  name: string = "name";
+
+  headers = {
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Credentials': 'true'
+  }
+
+  constructor(private httpClient: HttpClient) { }
 
   getAllTasks(): Observable<ListModel[]>{
     return this.httpClient.get<ListModel[]>('http://localhost:3000/list')
+  }
+
+  addTask(){
+    return this.httpClient.post<string>('http://localhost:3000/list', {name: 'name', status: true}, {headers: this.headers})
+  }
+
+  removeTask(){
+    return this.httpClient.delete<any>('http://localhost:3000/list')
   }
 }

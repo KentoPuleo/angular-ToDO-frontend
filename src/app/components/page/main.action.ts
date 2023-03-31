@@ -13,3 +13,31 @@ export const getAllTasksSuccess = createAction(
 export const getAllTasksFailed = createAction(
   "[List Page] GET ALL TASK Failed"
 )
+
+
+
+export const addTask = createAction(
+  "[List Page] ADD TASK",
+)
+
+export const addTaskSuccess = createAction(
+  "[List Page] ADD TASK SUCCESS"
+)
+
+export const addTaskFailed = createAction(
+  "[List Page] ADD TASK FAILED"
+)
+
+
+
+export const removeTask = createAction(
+  "[List Page] REMOVE TASK"
+)
+
+export const removeTaskSuccess = createAction(
+  "[List Page] REMOVE TASK SUCCESS"
+)
+
+export const removeTaskFailed = createAction(
+  "[List Page] REMOVE TASK FAILED"
+)

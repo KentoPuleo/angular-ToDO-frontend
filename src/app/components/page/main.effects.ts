@@ -1,6 +1,14 @@
 import {Injectable} from "@angular/core";
 import {MainHttpService} from "./main.http-service";
-import {getAllTasks, getAllTasksSuccess, getAllTasksFailed} from "./main.action";
+import {
+  getAllTasks,
+  getAllTasksSuccess,
+  getAllTasksFailed,
+  addTask,
+  addTaskSuccess,
+  addTaskFailed,
+  removeTask, removeTaskSuccess, removeTaskFailed
+} from "./main.action";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 import {mergeMap, tap} from 'rxjs/operators';
 import {map, of, throwError} from "rxjs";
@@ -21,7 +29,27 @@ export class MainEffects {
         this.mainHttpService.getAllTasks().pipe(map((response: ListModel[]) =>
           getAllTasksSuccess({tasks: response})), catchError(() => of(getAllTasksFailed)))
       )
-    ),
-    { dispatch: true }
+    )
+  )
+
+  addTask$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(addTask),
+      mergeMap(() =>
+        this.mainHttpService.addTask().pipe(map(() =>
+          addTaskSuccess()), catchError(() => of(addTaskFailed)))
+      )
+    )
+  )
+
+  removeTask$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(removeTask),
+      mergeMap(() =>
+        this.mainHttpService.removeTask().pipe(map(() =>
+          removeTaskSuccess()), catchError(() => of(removeTaskFailed))
+        )
+      )
+    )
   )
 }

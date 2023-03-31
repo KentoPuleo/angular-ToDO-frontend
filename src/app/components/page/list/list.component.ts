@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {addTask, getOneTask, getAllTask, removeTask, list, updateTask} from "../../../httpclient-task";
 import {ListModel} from "../../../model/list.model";
 import {MainStoreService} from "../main.store.service";
+import {Observable} from "rxjs";
 
 
 @Component({
@@ -29,17 +30,21 @@ export class ListComponent implements OnInit {
   ngOnInit() {
     this.mainStoreService.selectAllTasks().subscribe(value => this.list= value)
     this.mainStoreService.getTasks()
+    console.log(list)
   }
 
 
   add(){
     let param = document.getElementById('taskname') as HTMLInputElement;
-    addTask(param?.value);
+    console.log("add task gedrückt")
+    this.mainStoreService.addTask()
+    //addTask(param?.value);      Version vor NgRx
   }
 
 
   delete(param: string){
-    removeTask(parseInt(param));
+    console.log("delete task button")
+    this.mainStoreService.removeTask()
   }
 
   done(param: string){

@@ -26,7 +26,8 @@ export class MainHttpService {
     return this.httpClient.post<string>('http://localhost:3000/list', {name: 'name', status: true}, {headers: this.headers})
   }
 
-  removeTask(){
-    return this.httpClient.delete<any>('http://localhost:3000/list')
+  removeTask(id: number){
+    console.log(id)
+    return this.httpClient.delete<any>(`http://localhost:3000/list/${id}`)
   }
 }

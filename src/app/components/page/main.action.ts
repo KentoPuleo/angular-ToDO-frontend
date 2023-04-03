@@ -28,10 +28,13 @@ export const addTaskFailed = createAction(
   "[List Page] ADD TASK FAILED"
 )
 
-
+export const setSelectedId = createAction(
+  "[List Page] SET TASK ID",
+  props<{selectedTaskId: number}>()
+)
 
 export const removeTask = createAction(
-  "[List Page] REMOVE TASK"
+  "[List Page] REMOVE TASK",
 )
 
 export const removeTaskSuccess = createAction(

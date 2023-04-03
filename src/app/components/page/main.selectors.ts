@@ -5,3 +5,5 @@ export const selectMainState = createFeatureSelector<MainState>("main")
 
 export const selectTasks = createSelector(selectMainState, (state:MainState) => state.tasks)
 
+export const selectTaskId = createSelector(selectMainState, (state:MainState) => state.selectedTaskId)
+

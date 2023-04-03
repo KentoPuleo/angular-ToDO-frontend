@@ -4,4 +4,5 @@ export interface MainState {
   tasks: ListModel[];
   isLoading: boolean;
   taskName: string;
+  selectedTaskId: number;
 }

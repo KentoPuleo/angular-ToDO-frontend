@@ -36,16 +36,19 @@ export class ListComponent implements OnInit {
 
   add(){
     let param = document.getElementById('taskname') as HTMLInputElement;
-    console.log("add task gedrückt")
+    console.log("add task button triggered")
     this.mainStoreService.addTask()
-    //addTask(param?.value);      Version vor NgRx
   }
 
 
-  delete(param: string){
-    console.log("delete task button")
+  delete(id: string){
+    console.log("delete task button triggered")
+    let selectedId = parseInt(id)
+    console.log(id)
+    console.log(selectedId)
+    this.mainStoreService.setTaskId(selectedId)
     this.mainStoreService.removeTask()
-  }
+ }
 
   done(param: string){
     updateTask(parseInt(param));

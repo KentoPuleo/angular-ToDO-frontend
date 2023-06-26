@@ -21,11 +21,11 @@ jobs:
         with:
           node-version: '14'
 
-      - name: Install dependencies
-        run: npm install
-
       - name : Install Angular
         run: npm install -g @angular/cli
+
+      - name: Install dependencies
+        run: npm install
 
       - name: Build Angular project
         run: ng build

@@ -9,6 +9,7 @@ import {ListModel} from "../../model/list.model";
 export class MainHttpService {
 
   name: string = "name";
+  date: string = "03.10.2023";
 
   headers = {
     'Access-Control-Allow-Headers': 'Content-Type',
@@ -23,7 +24,7 @@ export class MainHttpService {
   }
 
   addTask(){
-    return this.httpClient.post<string>('http://localhost:3000/list', {name: 'name', status: true}, {headers: this.headers})
+    return this.httpClient.post<string>('http://localhost:3000/list', {name: 'name', status: true, date: this.date}, {headers: this.headers})
   }
 
   removeTask(id: number){

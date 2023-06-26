@@ -35,7 +35,8 @@ export class ListComponent implements OnInit {
 
 
   add(){
-    let param = document.getElementById('taskname') as HTMLInputElement;
+    let name = document.getElementById('taskname') as HTMLInputElement;
+    let date = document.getElementById('taskDate') as HTMLInputElement;
     console.log("add task button triggered")
     this.mainStoreService.addTask()
   }
@@ -53,5 +54,4 @@ export class ListComponent implements OnInit {
   done(param: string){
     updateTask(parseInt(param));
   }
-
 }

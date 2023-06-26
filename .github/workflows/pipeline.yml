@@ -22,13 +22,10 @@ jobs:
           node-version: '18.16.1'
 
       - name : Install Angular
-        run: npm install -g @angular/cli@15
-
-      - name: Install Angular CDK
-        run: npm i @angular/cdk -f
+        run: npm install -g @angular/cli
 
       - name: Install dependencies
-        run: npm install -f
+        run: npm install
 
       - name: Build Angular project
         run: ng build

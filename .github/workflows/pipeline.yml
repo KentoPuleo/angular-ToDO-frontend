@@ -19,10 +19,10 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '18.16.1'
 
       - name : Install Angular
-        run: npm install -g @angular/cli
+        run: npm install -g @angular/cli@15
 
       - name: Install Angular CDK
         run: npm i @angular/cdk

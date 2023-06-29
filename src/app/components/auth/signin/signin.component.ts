@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {getAllUser} from "../../../httprequest-user";
 import {UserModul} from "../../../model/user.modul";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../auth.service";
 import {Router} from "@angular/router";
 import {Store} from "@ngrx/store";
@@ -16,10 +16,10 @@ export class SigninComponent implements OnInit {
 
   user: UserModul[] = [];
 
-  form: FormGroup;
+  form: UntypedFormGroup;
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private auth: AuthService,
     private router: Router,
     private store: Store<AuthState>) {

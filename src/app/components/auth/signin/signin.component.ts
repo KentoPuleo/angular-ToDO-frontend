@@ -6,8 +6,6 @@ import {AuthService} from "../auth.service";
 import {Router} from "@angular/router";
 import {Store} from "@ngrx/store";
 import {AuthState} from "../reducer";
-import {noop, tap} from "rxjs";
-import { login } from '../auth.action';
 
 @Component({
   selector: 'app-signin',
@@ -36,31 +34,6 @@ export class SigninComponent implements OnInit {
   }
 
   login() {
-
-    /*
-
-    const val = this.form.value;
-
-    this.auth.login(val.name, val.password)
-      .pipe(
-        tap(user => {
-          console.log(user);
-
-          this.store.dispatch(login({user}));
-
-          //this.router.navigateByUrl('/list');
-
-        })
-      )
-      .subscribe(
-        () => alert('Login Failed')
-      )
-
-     */
-
-
-
-
     let name = document.getElementById('name') as HTMLInputElement;
     let passwort = document.getElementById('pass') as HTMLInputElement;
     for (let i = 0; i < this.user.length; i++) {

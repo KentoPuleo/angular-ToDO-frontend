@@ -16,17 +16,6 @@ export class ListComponent implements OnInit {
 
   constructor(private mainStoreService: MainStoreService ) { }
 
-  /*
-  async ngOnInit(): Promise<void> {
-    this.list = await getAllTask();
-    this.list.forEach(task => {
-      if (task.status == true){
-        this.listactive.push(task);
-      }
-    });
-  }
-   */
-
   ngOnInit() {
     this.mainStoreService.selectAllTasks().subscribe(value => this.list= value)
     this.mainStoreService.getTasks()
@@ -35,8 +24,6 @@ export class ListComponent implements OnInit {
 
 
   add(){
-    let name = document.getElementById('taskname') as HTMLInputElement;
-    let date = document.getElementById('taskDate') as HTMLInputElement;
     console.log("add task button triggered")
     this.mainStoreService.addTask()
   }

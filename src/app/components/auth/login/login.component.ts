@@ -40,5 +40,4 @@ export class LoginComponent implements OnInit {
     addUser(name?.value, email?.value, passwort?.value);
     alert("User successfully added");
   }
-
 }

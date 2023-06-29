@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { SigninComponent } from './signin.component';
+import { AuthService } from '../auth.service';
+import {HttpClient, HttpHandler} from "@angular/common/http";
+
 
 describe('SigninComponent', () => {
   let component: SigninComponent;
@@ -8,7 +12,15 @@ describe('SigninComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SigninComponent ]
+      declarations: [ SigninComponent ],
+      imports: [ReactiveFormsModule],
+      providers: [
+        FormBuilder,
+        HttpClient,
+        HttpHandler,
+        Router,
+        {provide: AuthService}
+      ]
     })
     .compileComponents();
   });
